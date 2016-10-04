@@ -1,0 +1,9 @@
+# Go Fish by Ryan Kelley - ICT-3
+# Version 0.0a - Published 10/04/2016
+
+from random import randint 
+from random import shuffle 
+# These lines import useful functions from the random module. 
+
+user = raw_input("Hello!  What is your name? [Type your name and press enter.]")
+print(user)
