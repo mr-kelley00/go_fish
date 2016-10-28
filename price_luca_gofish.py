@@ -110,28 +110,22 @@ class GoFish:
 		return random.randint(0,len(cards)) - 1
 	def goesFirst(self):
 		print("Let's decide the dealer, lowest card wins")
-		print("If 2 players draw the same, first draw wins")
-		time.sleep(2)
+		print("If 2 players draw the same, first draw wins"); time.sleep(2)
 		players = ""
 		for player in self.players:
 			players += player+":"
 		players = players[:-1]
 		player1,player2,player3,player4,player5 = players.split(":")
 		player1gf = self.randomCardWOS()
-		print(player1 + " drew a " + cards[player1gf])
-		time.sleep(0.5)
+		print(player1 + " drew a " + cards[player1gf]); time.sleep(0.5)
 		player2gf = self.randomCardWOS()
-		print(player2 + " drew a " + cards[player2gf])
-		time.sleep(0.5)
+		print(player2 + " drew a " + cards[player2gf]); time.sleep(0.5)
 		player3gf = self.randomCardWOS()
-		print(player3 + " drew a " + cards[player3gf])
-		time.sleep(0.5)
+		print(player3 + " drew a " + cards[player3gf]); time.sleep(0.5)
 		player4gf = self.randomCardWOS()
-		print(player4 + " drew a " + cards[player4gf])
-		time.sleep(0.5)
+		print(player4 + " drew a " + cards[player4gf]); time.sleep(0.5)
 		player5gf = self.randomCardWOS()
-		print(player5 + " drew a " + cards[player5gf])
-		time.sleep(0.5)
+		print(player5 + " drew a " + cards[player5gf]); time.sleep(0.5)
 		self.player1next = player5
 		self.player2next = player1
 		self.player3next = player2
@@ -160,8 +154,7 @@ class GoFish:
 			self.left2dealer = player4
 		else:
 			print("A lowest player could not be determined.")
-		print("The dealer is " + self.dealer)
-		time.sleep(2)
+		print("The dealer is " + self.dealer); time.sleep(2)
 		self.dealCards()
 	def randomCardInt(self):
 		if len(allcards) > 0:
@@ -181,39 +174,31 @@ class GoFish:
 				rc = self.randomCardInt()
 				self.players[playerfirst].append(allcards[rc])
 				del allcards[rc]
-				print(playerfirst+ " has drawn a card")
-				time.sleep(0.5)
+				print(playerfirst+ " has drawn a card"); time.sleep(0.5)
 		self.play()
 	def play(self):
-		print("Now that the cards are dealt, let's play!")
-		time.sleep(0.5)
+		print("Now that the cards are dealt, let's play!"); time.sleep(0.5)
 		print(self.left2dealer+" will start the game because he is left to "+self.dealer+", the dealer.")
-		self.currentPlayer = self.left2dealer
-		time.sleep(2)
+		self.currentPlayer = self.left2dealer; time.sleep(2)
 		while True:
-			print("It is "+self.currentPlayer+"'s turn.")
-			time.sleep(3)
+			print("It is "+self.currentPlayer+"'s turn."); time.sleep(3)
 			if self.currentPlayer != self.name:
 				target = self.getRandomPlayer(self.currentPlayer)
-				print(self.currentPlayer+" looks at "+target)
-				time.sleep(3)
+				print(self.currentPlayer+" looks at "+target); time.sleep(3)
 				cn = self.chooseCardToPick(self.currentPlayer)
 				rn = returnRealNumber(self.players[self.currentPlayer][cn])
-				print(self.currentPlayer+": "+target+", got any "+rn+"s?")
-				time.sleep(3)
+				print(self.currentPlayer+": "+target+", got any "+rn+"s?"); time.sleep(3)
 				tempaicard = ""
 				for enemyhascard in self.players[target]:
 					tempaicard += enemyhascard
 				if rn in tempaicard:
-					print(target+": Yes, I have some "+rn+"s.")
-					time.sleep(2)
+					print(target+": Yes, I have some "+rn+"s."); time.sleep(2)
 					tempaicardnum = 0
 					for card in self.players[target]:
 						if rn in card:
 							print(target+": Here, have my "+card)
 							self.players[self.currentPlayer].append(card)
-							del self.players[target][tempaicardnum]
-							time.sleep(2)
+							del self.players[target][tempaicardnum]; time.sleep(2)
 							drawnaicards = {"Ace":0,"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"Jack":0,"Queen":0,"King":0} 
 							for aicards in self.players[self.currentPlayer]:
 								if returnRealNumber(aicards) == "Ace":
@@ -267,13 +252,11 @@ class GoFish:
 						else:
 							tempaicardnum += 1
 				else:
-					print(target+": No, go fish!")
-					time.sleep(2)
+					print(target+": No, go fish!"); time.sleep(2)
 					gofishcard = self.randomCardInt()
 					self.players[self.currentPlayer].append(allcards[gofishcard])
 					del allcards[gofishcard]
-					print(self.currentPlayer + " drew a card.")
-					time.sleep(2)					
+					print(self.currentPlayer + " drew a card."); time.sleep(2)					
 					if self.currentPlayer == self.player1:
 						self.currentPlayer = self.player1next
 					elif self.currentPlayer == self.player2:
@@ -298,22 +281,18 @@ class GoFish:
 					else:
 						pass
 				target = self.chooseTarget()
-				print(self.currentPlayer + " looks at " + target)
-				time.sleep(3)
+				print(self.currentPlayer + " looks at " + target); time.sleep(3)
 				playerchoosecard = self.chooseCardPlayer()
-				print(self.currentPlayer+": "+target+ ", do you have any "+playerchoosecard+"s?")
-				time.sleep(3)
+				print(self.currentPlayer+": "+target+ ", do you have any "+playerchoosecard+"s?"); time.sleep(3)
 				tempEnemyCards = ""
 				for desiredCard in self.players[target]:
 					tempEnemyCards += desiredCard
 				aiDelCard = 0
 				if playerchoosecard in tempEnemyCards:
-					print(target+": Yes, I have some "+playerchoosecard+"s.")
-					time.sleep(2)
+					print(target+": Yes, I have some "+playerchoosecard+"s."); time.sleep(2)
 					for aiCard in self.players[target]:
 						if playerchoosecard in aiCard:
-							print(target+": Here, have my "+aiCard)
-							time.sleep(2)
+							print(target+": Here, have my "+aiCard); time.sleep(2)
 							self.players[self.currentPlayer].append(aiCard)
 							del self.players[target][aiDelCard]
 							drawnaicards = {"Ace":0,"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"Jack":0,"Queen":0,"King":0} 
