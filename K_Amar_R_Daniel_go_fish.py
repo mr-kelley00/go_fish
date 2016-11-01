@@ -1,6 +1,6 @@
 
 # Go Fish by Amar K. and Daniel R. - ICT-3
-# Version 2.5 - Published 10/26/2016
+# Version 2.6 - Published 10/26/2016
 
 import sys
 import random
@@ -35,7 +35,8 @@ if rules == 0:
     print ("During the game, if a player is left without cards, he may (when it's his turn to play), draw from the stock and then ask for cards of that rank. ")
     print ("If there are no cards left in the stock, he is out of the game.")
 
-else: print ("Great! We are ready to play!")
+else:
+    print ("Great! We are ready to play!")
 
 def fours(name, hand): # Checks for a name/hand for wins
     for card in set(hand):
@@ -47,8 +48,10 @@ def fours(name, hand): # Checks for a name/hand for wins
 
 deck = ["Ace", "King", "Queen", "Jack", "10", "9", "8", "7", "6", "5", "4", "3", "2", "Ace", "King", "Queen", "Jack", "10", "9", "8", "7", "6", "5", "4", "3", "2", "Ace", "King", "Queen", "Jack", "10", "9", "8", "7", "6", "5", "4", "3", "2", "Ace", "King", "Queen", "Jack", "10", "9", "8", "7", "6", "5", "4", "3", "2"]
 shuffle(deck)
-print(deck)
-    
+#print(deck)
+#Make directions more clear.
+print (" You would want to put a number 1 through 4 for the first thing you input, the  number has to be diffrent deppending on what charecter you are controling. The second number you want to input is a card that you want to check with the other player. If you get an error message, that means you don't have the card, or the first number  you input is you is the charecter you are controling.")
+# Print the player's cards in the hand   
 scores = {name:0 for name in (sys.argv[1:] if sys.argv[2:] else list('1234'))}
 names = list(scores)
 
@@ -107,6 +110,7 @@ while 1:
     if not success:
         if deck:
             print('Go fish!')
+            #what did i get
             hands[player].append(deck.pop())
             if hands[player][-1] == card:
                 success = True
@@ -115,6 +119,7 @@ while 1:
             print('Can\'t fish - no deck.')
     else:
         print('{} got the {} from {}.'.format(player, card, ask))
+        #print you get to go again
     if not success:
         idx += 1
         if idx >= len(names):
@@ -127,4 +132,4 @@ while 1:
         size = max(map(len, names))
         for k in sorted(scores, key=scores.get, reverse=True):
             print(k.ljust(size), scores[k])
-        break
+            break
