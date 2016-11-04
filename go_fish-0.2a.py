@@ -1,5 +1,5 @@
 # Go Fish by Ryan K. - ICT-3
-# Version 0.5a - Published 11/04/2016
+# Version 0.2a - Published 11/04/2016
 
 from random import randint 
 from random import shuffle 
@@ -27,10 +27,10 @@ deck = ["Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", 
 full_deck = deck * 4
 print (full_deck,"\n")
 shuffle(full_deck)
-print (full_deck)
+print (full_deck,"\n")
 
 
-#print(deck) # Make sure it worked.
+# 
 
 # How can we shuffle the deck?
 
