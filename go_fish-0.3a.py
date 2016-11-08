@@ -1,5 +1,5 @@
 # Go Fish by Ryan K. - ICT-3
-# Version 0.5a - Published 11/04/2016
+# Version 0.3a - Published 11/04/2016
 
 from random import randint 
 from random import shuffle 
@@ -23,8 +23,14 @@ else:
 
 # Setup our deck of cards and assign values. 
 
-deck_value = {"Two": 2, "Three": 3, "Four": 4, "Five": 5, "Six": 6, "Seven": 7, "Eight": 8, "Nine": 9, "Ten": 10, "Jack": 11, "Queen": 12, "King": 13, "Ace": 14}
-deck = ["Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King", "Ace"]
+deck = ["Ace","King", "Queen", "Jack", "Ten", "Nine", "Eight", "Seven", "Six", "Five", "Four", "Three", "Two"];
+deck_value = {"Ace": 14, "King": 13, "Queen": 12, "Jack": 11, "Ten": 10, "Nine": 9, "Eight": 8, "Seven": 7, "Six": 6, "Five": 5, "Four": 4, "Three": 3, "Two": 2}
+full_deck = deck * 4
+
+#deck_value = {2: "Two", 3: "Three", 4: "Four", 5: "Five", 6: "Six", 7: "Seven", 8: "Eight", 9: "Nine", 10: "Ten", 11: "Jack", 12: "Queen", 13: "King", 14: "Ace"}
+#deck = ["Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King", "Ace"]
+#deck =[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+#deck_value = {"Two": 2, "Three": 3, "Four": 4, "Five": 5, "Six": 6, "Seven": 7, "Eight": 8, "Nine": 9, "Ten": 10, "Jack": 11, "Queen": 12, "King": 13, "Ace": 14}
 full_deck = deck * 4
 print (full_deck,"\n")
 shuffle(full_deck)
@@ -54,5 +60,14 @@ print (p1_dealt)
 print (p2_dealt)
 print (p3_dealt)
 print (p4_dealt)
+# Print the hands to make sure they were dealt correctly.
+
+# DETERMINE FIRST PLAYER
+first = 0 # We will set this variable equal to the number of the first player.
+p1_value = deck_value[p1_dealt]
+print (p1_dealt[deck_value])
+print (deck_value[p1_dealt])
+#while first = 0:
+#    if deck_value[p1_dealt] <
 
 # This code should put you on the correct path to completing the project.
