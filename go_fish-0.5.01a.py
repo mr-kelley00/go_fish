@@ -1,5 +1,5 @@
 # Go Fish by Ryan K. - ICT-3
-# Version 0.4a - Published 11/07/2016
+# Version 0.5.02a - Published 11/07/2016
 
 
 from random import shuffle # Import the SHUFFLE function from the RANDOM library. 
@@ -11,7 +11,7 @@ from time import sleep # Use the SLEEP function from the TIME library.
 
 
 def new_player():   # This function sets the game up for a single human player and handles the rules. 
-    print("Welcome to Go Fish-bot Version 0.4a.\nI am the premier Go Fish program in the universe.\n")
+    print("Welcome to Go Fish-bot Version 0.5.02a.\nI am the premier Go Fish program in the universe.\n")
     user = input("Hello!  What is your name? [Type your name and press enter.]\n")
     print("Hello,", user, "today we are going to play Go Fish!\n")
     # These lines introduce the user to our program and records their name.
@@ -32,7 +32,8 @@ def make_deck():   # This fucntion will create a brand new deck and shuffle it.
     shuffle(full_deck)
     print("Shuffling...please hold.  This is extremely precise.\n")
     sleep(5)
-    print (full_deck,"\n")
+    print("The deck has been sufficiently randomized.\n")
+    print (full_deck,"\n") # REMOVE FROM FINAL CODE. 
     return full_deck
 
 def goes_first():   # This function will determine which player will start the game. 
@@ -46,14 +47,14 @@ def goes_first():   # This function will determine which player will start the g
     # Create a key to have our neccesary values.  CREDIT TO CONNOR FOR THIS IDEA!
     # Need to fix function code.  full_deck variable is NOT being passed to goes_first() function.
     
-    deal1 = full_deck[0]
-    full_deck.remove(deck[0])
-    deal2 = full_deck[0]
-    full_deck.remove(deck[0])
-    deal3 = full_deck[0]
-    full_deck.remove(deck[0])
-    deal4 = full_deck[0]
-    full_deck.remove(deck[0])
+    deal1 = fresh_deck[0]
+    fresh_deck.remove(fresh_deck[0])
+    deal2 = fresh_deck[0]
+    fresh_deck.remove(fresh_deck[0])
+    deal3 = fresh_deck[0]
+    fresh_deck.remove(fresh_deck[0])
+    deal4 = fresh_deck[0]
+    fresh_deck.remove(deck[0])
     # The above lines make the deal1 through deal4 equal to the top card of the deck.  Then that top card is removed each time.
     
     print(user, " was dealt a ", deal1,"\n")
@@ -78,7 +79,6 @@ def goes_first():   # This function will determine which player will start the g
 
 def go_fish(): # This is the main go_fish function.  It calls all of the required functions for the game.
     new_player()
-    make_deck()
     goes_first()
 
 go_fish() # Call go_fish() to play the game, hopefully! 
