@@ -44,7 +44,7 @@ def start_game():
                         p3hand = []
                         p4hand = []
                         card_dealt = 0
-                while card_dealt < 1:
+                while card_dealt < 0:
                         p1hand.append(full_deck[0])
                         full_deck.remove(full_deck[0])
                         p2hand.append(full_deck[0])
@@ -99,8 +99,8 @@ def ask():
                 print ("That's not an answer!")
 
 
-        start_game()
-        ask(p1)
-        dealer()
-        deal_card()
+start_game
+ask()
+dealer()
+deal_card()
 
