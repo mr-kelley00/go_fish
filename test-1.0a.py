@@ -99,8 +99,9 @@ def ask():
                 print ("That's not an answer!")
 
 
-start_game
+start_game()
 ask()
 dealer()
 deal_card()
 
+start_game
