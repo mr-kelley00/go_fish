@@ -167,34 +167,38 @@ def go_fish(): # This is our main game loop.
                 player_asked = hand4
 
 # Once we have our CARD and PLAYER, check to see if we have any matches.  If yes, remove card and append to current player.  If no, Go Fish!
-
+            match = 0 # Use this to for our Go Fish Check later. 
             for cards in player_asked:
                 if card_asked in player_asked:
                     print("That's a match!\n")
-                    player_asked.remove(card_asked)
                     hand1.append(card_asked)
+                    player_asked.remove(card_asked)
                     sleep(1)
-                    print (hand1)
-                    no_match = 0
+                    match = 1
                 else:
-                    print("There's no match.  Go Fish!\n")
-                    sleep(1)
-                    no_match = 1
-
-                if no_match == 1:
-                    print("Time to Go Fish!  If you catch what you want, you get to go again.\n")
-                    sleep(1)
-                    go_fish = fresh_deck[0] # This allows me to check if the card drawn is the card asked.
-                    if go_fish == card_asked:
-                        print("Caught one!  You drew the card you wanted.\n")
-                        sleep(1)
-                    else:
-                        print("That one got away!  You did not draw what you wanted.\n")
-                        sleep(1)
-                    hand1.append(fresh_deck[0])
-                    fresh_deck.remove(fresh_deck[0])
-                else:
+                    print("This pair did not match.\n")
                     
+            
+            if match != 1:
+                print("Time to Go Fish!  If you catch what you want, you get to go again.\n")
+                sleep(1)
+                go_fish = fresh_deck[0] # This allows me to check if the card drawn is the card asked.
+                if go_fish == card_asked:
+                    print("Caught one!  You drew the card you wanted.\n")
+                    print("You drew a/an:",go_fish,".\n")
+                    sleep(1)
+                else:
+                    print("You drew a/an:",go_fish,".\n")
+                    print("That one got away!  You did not draw what you wanted.\n")
+                    sleep(1)
+                    first_turn = 2 # Pass control to player two. 
+                    print("It will now be player two's turn.\n")
+                hand1.append(fresh_deck[0])
+                fresh_deck.remove(fresh_deck[0])
+            else:
+                print("You caught what you wanted.  It is still your turn.\n")
+                sleep(1)
+                 
 
         elif first_turn == 2:
             print("Player 2!")
