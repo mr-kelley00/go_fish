@@ -1,5 +1,5 @@
 # Go Fish by Ryan K. - ICT-3
-# Version 0.91 - Published 01/09/2016
+# Version 0.99 - Published 01/09/2016
 
 from random import shuffle # Import the SHUFFLE function from the RANDOM library. 
 from time import sleep # Use the SLEEP function from the TIME library.
@@ -17,7 +17,7 @@ full_deck = deck * 4
 value = {"Two":2, "Three":3, "Four":4, "Five":5, "Six":6, "Seven":7, "Eight":8, "Nine":9, "Ten":10, "Jack":11, "Queen":12, "King":13, "Ace":14}
 # Create a key to have our neccesary values.  CREDIT TO CONNOR AND ALEC FOR THIS IDEA!
 
-print("Welcome to Go Fish-bot Version 0.9.\nI am the premier Go Fish program in the universe.\n")
+print("Welcome to Go Fish-bot Version 0.99.\nI am the premier Go Fish program in the universe.\n")
 user = input("Hello!  What is your name? [Type your name and press enter.]\n")
 print("Hello,", user, "today we are going to play Go Fish!\n")
 # Making the user a GLOBAL variable as well.  Any functions below can access the user variable data.  
@@ -262,23 +262,118 @@ def go_fish(): # This is our main game loop.
                 total_books -= 1
             else:
                 print("No books were matched.\n") 
-                    
-'''
-            print (hand1)
-            print("This is your current hand.\n")
-            sleep(5)
-            print (hand2)
-            print (hand3)
-            print (hand4)
-            sleep(5)
-'''         
-            
+                     
         elif first_turn == 2:
-            print("Player 2!")
-            sys.exit() 
+            print(user,"it is your turn.\n")
+            card_asked = input("Which card do you want?\n")
+            if card_asked not in hand1:
+                print("You do not have that card.  Try again.\n")
+                print (hand1)
+                card_asked = input("Please choose a card in your hand.\n")
+            else:
+                print ("You asked for a/an:", card_asked,".\n")
+
+            player_asked = int(input("Which player do you want to ask?  Enter 2, 3, or 4.\n"))
+            hand_asked = [] # Need an empty hand to perform our hand-copying magic later.
+            
+            if player_asked == 2:
+                hand_asked = hand2 # This sets the variable equal to the hand of the player we are asking for a card.
+                
+            elif player_asked == 3:
+                hand_asked = hand3
+                
+            else:
+                hand_asked = hand4
+                
+
+# Once we have our CARD and PLAYER, check to see if we have any matches.  If yes, remove card and append to current player.  If no, Go Fish!
+
+            match = False # Use this to for our Go Fish Check later.
+
+# This block of code checks the card_asked against each card in player_asked.
+
+            for cards in hand_asked:
+                if cards in hand_asked and cards == card_asked: # Is the card in the hand AND does the card match the card_asked? 
+                    print("That's a match between",cards,"and",card_asked,"!\n") # REMOVE FROM FINAL VERSION. 
+                    hand1.append(card_asked)
+                    hand_asked.remove(card_asked)
+                    
+                    if player_asked == 2: # This IF/ELIF/ELSE statement allows me to re-create the asked player's hand after removing the asked card. 
+                        hand2 = hand_asked
+                        #print (hand2)
+                        #print("Checking to see if new hands were created correctly.\n")                     
+                        #sleep(5)
+                    elif player_asked == 3:
+                        hand3 = hand_asked
+                        #print (hand3)
+                        #print("Checking to see if new hands were created correctly.\n")                     
+                        #sleep(5)
+                    else:
+                        hand4 = hand_asked
+                        #print (hand4)
+                        #print("Checking to see if new hands were created correctly.\n")                     
+                        #sleep(5)
+                    
+                    match = True # We have at least one match, no need to go fish!
+                    
+                else:
+                    print ("Those two didn't match.\n")
+                    sleep(1)
+                    
+            
+            if match != True :
+                print("Time to Go Fish!  If you catch what you want, you get to go again.\n")
+                sleep(1)
+                go_fish = fresh_deck[0] # This allows me to check if the card drawn is the card asked.
+                if go_fish == card_asked:
+                    print("Caught one!  You drew the card you wanted.\n")
+                    print("You drew a/an:",go_fish,".\n")
+                    sleep(1)
+                else:
+                    print("You drew a/an:",go_fish,".\n")
+                    print("That one got away!  You did not draw what you wanted.\n")
+                    sleep(1)
+                    first_turn = 2 # Pass control to player two. 
+                    print("It will now be player two's turn.\n")
+                hand1.append(fresh_deck[0]) # Draw a card. 
+                fresh_deck.remove(fresh_deck[0]) # Remove it from the deck. 
+            else:
+                print("You caught what you wanted.  It is still your turn.\n")
+                sleep(1)
+                
+# Check current hand for four-of-a-kind.  If match, remove and score a book.  If no, continue on.
+# Books are not counting and removing correctly from the hand.  Need to find solution.
+
+            new_hand = [] # Give us an empty hand to work with. We will append any non-4-of-a-kind cards to a new hand.
+            made_book = False
+            for cards in hand1:
+                num_cards = hand1.count(cards)
+                
+               # Count the number of the current card.
+                
+                if num_cards == 4:
+                   #print("You made a book of",cards,".\n")
+                   made_book = True
+                   sleep(1)
+                else:
+                    new_hand.append(cards) # Any cards that aren't in a pair of four are added to a new hand.
+
+            hand1 = new_hand # We make our current hand equal to the new_hand with all 4-of-a-kind cards removed. 
+            
+            if made_book == True:
+                p1_books +=1
+                total_books -= 1
+            else:
+                print("No books were matched.\n")
+
+# PLAYER THREE'S TURN.
+
         elif first_turn == 3:
             print("Player 3!")
             sys.exit()
+
+# PLAYER FOUR'S TURN.
+
         else:
             print("Player 4!")
             sys.exit()
